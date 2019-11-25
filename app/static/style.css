@@ -1,0 +1,20 @@
+body {
+	background-color: #1f4478;
+}
+
+.container {
+	color: #EAECFC;
+	align-items: center;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-el {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #d9edf7;
+
+}

@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <img style="max-width: 60px;" src="https://www.contabilidades.org/imgempresas/contagil-contabilidade-29345-WA2L.jpg">
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li class="active"><a href="/key/free">Chaves Livres</a></li>
+          <li class="active"><a href="/key/using">Chaves Em Uso</a></li>
+          <li class="active"><a href="/company">Empresas</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <p>{{ code }}</p>
+  </body>
+</html>
