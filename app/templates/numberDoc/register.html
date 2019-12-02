@@ -1,0 +1,17 @@
+<html>
+  {% include "head.html" %}
+  <body>
+    {% include "nav-bar.html" %}
+    <div class="container">
+      {% block content %}
+      <form action="/company/{{id_company}}/numberDocument/register" method="post">
+        <div class="form-group">
+          <label>Número do Documento</label>
+          <input type="text" class="form-control" name="number-document">
+        </div>
+        <button type="submit" class="btn btn-light" style="margin-top: 10px;float: right;">Salvar</button>
+      </form>
+      {% endblock %}
+    </div>
+  </body>
+</html>

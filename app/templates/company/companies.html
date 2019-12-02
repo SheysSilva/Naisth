@@ -3,15 +3,9 @@
   <body>
     {% include "nav-bar.html" %}
     <div class="container">
-      <div>
-        <select name="select" class="form-control">
-          <option selected disabled hidden></option>
-          {% for option in options %}
-          <option value="{{ option.name }}"> {{ option.name }} </option>
-          {% endfor %}
-        </select>
-        <button type="submit" class="btn btn-light" style="margin-top: 10px;float: right;">Salvar</button>
-      </div>
+      <form action="/company/register" method="get">
+        <button name="createCompanyBtn" type="submit" class="btn btn-light" style="margin-top: 10px;float: right;">Criar Empresa</button>
+      </form>
       <h1> {{ title }} </h1>
       <table class="table">
         <thead class="thead-light">
@@ -19,13 +13,18 @@
             <th scope="row"></th>
             <th scope="col">{{ table.title_1 }}</th>
             <th scope="col">{{ table.title_2 }}</th>
+            <th scope="col">{{ table.title_3 }}</th>            
         </thead>
         <tbody>
           {% for el in elements %}
           <tr>
             <th scope="row"></th>
+            <td><a href="company/{{el.id}}">{{ el.name }}</a></td>          
             <td>{{ el.id }}</td>
             <td>{{ el.status }}</td>
+            <td>
+              <a href="/company/{{el.id}}/key/register"><button type="submit" class="btn btn-light" style="float: right">Gerar Chaves</button></a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>

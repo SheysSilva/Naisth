@@ -1,0 +1,23 @@
+<html>
+  {% include "head.html" %}
+  <body>
+    {% include "nav-bar.html" %}
+    <div class="container">
+      <form action="/numberDocument/register" method="post">
+        <button name="createCompanyBtn" type="submit" class="btn btn-light" style="margin-top: 10px;float: right;">Adicionar</button>
+      </form>
+      <h1> {{ title }} </h1>
+      <div>
+        <form action="" method="get">
+          <select name="select" class="form-control">
+            <option selected disabled hidden></option>
+            {% for company in companies %}
+            <option value="{{ company.id }}">{{ company.id }}</option>
+            {% endfor %}
+          </select>
+          <button name="search" type="submit" class="btn btn-light" style="margin-top: 10px;float: right;">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

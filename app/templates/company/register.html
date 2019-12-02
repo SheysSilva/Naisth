@@ -1,0 +1,24 @@
+<html>
+  {% include "head.html" %}
+  <body>
+    {% include "nav-bar.html" %}
+    <div class="container">
+      {% block content %}
+      <form action="/company" method="get">
+        <button name="search" type="submit" class="btn btn-light" style="margin-top: 10px;">Voltar</button>
+      </form>
+      <form action="/company/register" method="post">
+        <div class="form-group">
+          <label for="name-company">Nome da Empresa</label>
+          <input type="text" class="form-control" name="name-company">
+        </div>
+        <div class="form-group">
+          <label for="cnpj-company">CNPJ da Empresa</label>
+          <input type="text" class="form-control" name="cnpj-company">
+        </div>
+        <button name="createCompanyBtn" type="submit" class="btn btn-light" style="margin-top: 10px;float: center;">Criar Empresa</button>
+      </form>
+      {% endblock %}
+    </div>
+  </body>
+</html>

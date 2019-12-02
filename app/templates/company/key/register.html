@@ -1,0 +1,83 @@
+<html>
+  {% include "head.html" %}
+  <body>
+    {% include "nav-bar.html" %}
+    <div class="container">
+      {% block content %}
+        <div class="form-group">
+          <label>Mês</label>
+          <div style="position: relative;  display: flex; margin: 5px;">
+            <select name="select-month-min" class="form-control">
+              <option selected disabled hidden></option>
+              {% for month in months %}
+              <option value="{{ month.value }}">{{ month.name }}</option>
+              {% endfor %}
+            </select>
+            <h4> - </h4>
+            <select name="select-month-max" class="form-control">
+              <option selected disabled hidden></option>
+              {% for month in months %}
+              <option value="{{ month.value }}">{{ month.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Ano</label>        
+          <div style="position: relative;  display: flex; margin: 5px;">
+            <select name="select-year-min" class="form-control">
+              <option selected disabled hidden></option>
+              {% for year in years %}
+              <option value="{{ year }}">{{ year }}</option>
+              {% endfor %}
+            </select>
+            <h4> - </h4>
+            <select name="select-year-max" class="form-control">
+              <option selected disabled hidden></option>
+              {% for year in years %}
+              <option value="{{ year }}">{{ year }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Modelo</label>        
+          <select name="select-model" class="form-control">
+            <option selected disabled hidden></option>
+            {% for model in models %}
+            <option value="{{ model.value }}">{{ model.name }} : {{ model.value }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">        
+          <label>Emissão</label>      
+          <select name="select-issue" class="form-control">
+            <option selected disabled hidden></option>
+            {% for issue in issues %}
+            <option value="{{ issue.value }}">{{ issue.name }} : {{ issue.value }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Serie</label>        
+          <select name="select-serie" class="form-control">
+            <option selected disabled hidden></option>
+            {% for serie in series %}
+            <option value="{{ serie }}">{{ serie }}</option>
+            {% endfor %}
+          </select>
+        </div>        
+        <div class="form-group">        
+          <label>Estado</label>        
+          <select name="select-uf" class="form-control">
+            <option selected disabled hidden></option>
+            {% for uf in ufs %}
+            <option value="{{ uf.value }}">{{ uf.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="btn btn-light" style="float: right;">Salvar</button>
+      {% endblock %}
+    </div>
+  </body>
+</html>
