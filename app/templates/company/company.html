@@ -1,0 +1,80 @@
+<html>
+  {% include "head.html" %}
+  <body>
+    {% include "nav-bar.html" %}
+    <div class="container">
+      <form action=".." method="get">
+        <button type="submit" class="btn btn-light" style="margin-top: 10px;">Voltar</button>
+      </form>
+      <h1> {{ company.name }} </h1>
+      <div class="form-group">
+        <form action="numberDocument/register/" method="get">
+          <button type="submit" class="btn btn-light" style="margin: 10px;float: right;">Adicionar Números</button>
+        </form>
+        <form action="key/register/" method="get">
+          <button type="submit" class="btn btn-light" style="margin: 10px;float: right;">Gerar Chaves</button>
+        </form>
+      </div>
+      <div>
+        <h6>CNPJ: {{ company.id }}</h6>
+        <h6>Status: {{ company.status }}</h6>
+        <h6>Calculo: {{ company.random }}</h6>
+      </div>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="numbers-tab" data-toggle="tab" href="#numbers" role="tab" aria-controls="numbers" aria-selected="true">Número de Documentos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="keys-tab" data-toggle="tab" href="#keys" role="tab" aria-controls="profile" aria-selected="false">Chaves</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="numbers" role="tabpanel" aria-labelledby="numbers-tab">
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="row"></th>
+                <th scope="col">{{ table.title_1 }}</th>
+                <th scope="col">{{ table.title_2 }}</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for el in numbers %}
+              <tr>
+                <th scope="row"></th>
+                <td>{{ el.id }}</td>
+                <td>{{ el.status }}</td>
+                <td>
+                  <a href="/company/{{el.id}}/key/register">
+                    <button type="submit" class="btn btn-danger" style="float: right">Excluir</button>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane" id="keys" role="tabpanel" aria-labelledby="keys-tab">
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="row"></th>
+                <th scope="col">{{ table.title_1 }}</th>
+                <th scope="col">{{ table.title_2 }}</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for el in keys %}
+              <tr>
+                <th scope="row"></th>
+                <td>{{ el.id }}</td>
+                <td>{{ el.status }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -3,8 +3,8 @@
   <body>
     {% include "nav-bar.html" %}
     <div class="container">
-      <form action="/company/register" method="get">
-        <button name="createCompanyBtn" type="submit" class="btn btn-light" style="margin-top: 10px;float: right;">Criar Empresa</button>
+      <form action="register/" method="get">
+        <button type="submit" class="btn btn-light" style="margin-top: 10px;float: right;">Criar Empresa</button>
       </form>
       <h1> {{ title }} </h1>
       <table class="table">
@@ -19,11 +19,14 @@
           {% for el in elements %}
           <tr>
             <th scope="row"></th>
-            <td><a href="company/{{el.id}}">{{ el.name }}</a></td>          
+            <td><a href="{{el.id}}/">{{ el.name }}</a></td>          
             <td>{{ el.id }}</td>
             <td>{{ el.status }}</td>
             <td>
-              <a href="/company/{{el.id}}/key/register"><button type="submit" class="btn btn-light" style="float: right">Gerar Chaves</button></a>
+              <a href="{{el.id}}/key/register/"><button type="submit" class="btn btn-light" style="float: right">Gerar Chaves</button></a>
+            </td>
+            <td>
+              <a href=""><button type="submit" class="btn btn-danger" style="float: right">Exluir</button></a>
             </td>
           </tr>
           {% endfor %}

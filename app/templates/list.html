@@ -1,35 +1,20 @@
-<html>
-  {% include "head.html" %}
-  <body>
-    {% include "nav-bar.html" %}
-    <div class="container">
-      <div>
-        <select name="select" class="form-control">
-          <option selected disabled hidden></option>
-          {% for option in options %}
-          <option value="{{ option.name }}"> {{ option.name }} </option>
-          {% endfor %}
-        </select>
-        <button type="submit" class="btn btn-light" style="margin-top: 10px;float: right;">Salvar</button>
-      </div>
-      <h1> {{ title }} </h1>
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th scope="row"></th>
-            <th scope="col">{{ table.title_1 }}</th>
-            <th scope="col">{{ table.title_2 }}</th>
-        </thead>
-        <tbody>
-          {% for el in elements %}
-          <tr>
-            <th scope="row"></th>
-            <td>{{ el.id }}</td>
-            <td>{{ el.status }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </body>
-</html>
+<div class="container">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="row"></th>
+        <th scope="col">{{ table.title_1 }}</th>
+        <th scope="col">{{ table.title_2 }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for el in elements %}
+      <tr>
+        <th scope="row"></th>
+        <td>{{ el.id }}</td>
+        <td>{{ el.status }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>

@@ -4,8 +4,7 @@ now = datetime.now()
 
 menu = [
 	{'name': 'Home', 'route': 'index' }, 
-	{'name' : 'Empresa', 'route': 'companies'},
-	{'name': 'Lista', 'route': 'list' }]
+	{'name' : 'Empresa', 'route': 'companies'}]
 		
 legend = {'title_1': 'Identificador', 'title_2':'Status'}
 legend_company ={'title_1': 'Nome', 'title_2':'CNPJ', 'title_3': 'Status'}
@@ -31,6 +30,12 @@ months = [
 	{'name': 'Outubro', 'value' : '10'},
 	{'name': 'Novembro', 'value' : '11'},
 	{'name': 'Dezembro', 'value' : '12'}
+]
+
+random = [
+	{'name': 'COD 001', 'value' : '001'},
+	{'name': 'COD 002', 'value' : '002'},
+	{'name': 'COD 003', 'value' : '003'},
 ]
 
 models = [

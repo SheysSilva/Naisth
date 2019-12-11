@@ -1,11 +1,11 @@
 from datetime import datetime
 date = datetime.now()
 
-def generate(uf, year, month, cnpj, model, serie, number, issue_form,):
+def generate(uf, year, month, cnpj, model, serie, number, issue_form):
 	number_docu = number_doc(number)
 	seq = sequence(number)
 
-	key_part = str(uf) + str(year)[2:4] + str(month) + str(cnpj) + str(model) + str(serie) + str(number_docu) + str(issue_form) + str(seq)
+	key_part = str(uf) + str(year)[2:4] + toStringMonth(month) + str(cnpj) + str(model) + str(serie) + str(number_docu) + str(issue_form) + str(seq)
 	
 	div = generateDiv(key_part)
 	key = key_part + str(div)
@@ -30,7 +30,7 @@ def number_doc(number):
 		seq += ch
 
 	return seq
-
+	
 def generateDiv(key):
 	div = 0
 	count = 2
@@ -49,5 +49,8 @@ def generateDiv(key):
 		return 0
 	return res
 
-
-
+def toStringMonth(month):
+	if int(month) <= 9:
+		return ('0'+str(month))
+	else:
+		return str(month)

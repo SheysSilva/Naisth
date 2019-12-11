@@ -3,53 +3,47 @@ from flask import render_template, redirect, url_for
 from pygments import highlight, lexers, formatters
 import json
 from app.response import *
-from app.routes import company
-from app.routes import numberDocument
-from app.routes import key
+from app.routes import company, numberDocument, key
 from app.routes.util import *
 
 @app.route("/", methods=['GET'])
 def index():
 	return render_template('home.html', menus=menu, title="Home")
 
-@app.route("/company", methods=['GET'])
+@app.route("/company/", methods=['GET'])
 def companies():
 	return company.companies()
 
-@app.route("/company/register", methods=['GET', 'POST'])
-def addCompany():
+@app.route("/company/register/", methods=['GET', 'POST'])
+def postCompany():
 	cnpj = request.form.get('cnpj-company')
 	name = request.form.get('name-company')
-	print(cnpj)
-	print(name)
-	return company.addCompany(cnpj, name)
+	random = request.form.get('type-random-company')
+	return company.createCompany(cnpj, name, random)
 
-@app.route("/company/<string:id>", methods=['GET', 'POST'])
-def numberDocuments(id):
-	return numberDocument.numberDocuments(id)
+@app.route("/company/<string:id_company>/", methods=['GET', 'POST'])
+def companyID(id_company):
+	return company.companyID(id_company)
 
-@app.route("/numberDocument/<string:id>", methods=['GET'])
-def numberDocumentsId(id):
+@app.route("/company/<string:id_company>/numberDocument/<string:id_number>/", methods=['GET'])
+def numberDocumentsId(id_company, id_number):
 	return numberDocument.numberDocumentsId(id)
 
-@app.route("/company/<string:id>/numberDocument/register", methods=['GET', 'POST'])
-def addNumberDocument(id):
+@app.route("/company/<string:id_company>/numberDocument/register/", methods=['GET', 'POST'])
+def addNumberDocument(id_company):
 	number = request.form.get('number-document')
-	return numberDocument.addNumberDocument(number, id)
+	return numberDocument.addNumberDocument(number, id_company)
 
-@app.route("/company/<string:id>/key/register", methods=['GET', 'POST'])
+@app.route("/company/<string:id>/key/register/", methods=['GET', 'POST'])
 def addKey(id):
-	return key.addKeys(id)
-
-@app.route("/list", methods=['GET', 'POST'])
-def list():
-	select = request.args.get('select')
-	if select=='Chaves Livres':
-		return company.free()
-	if select=='Chaves em Uso':
-		return company.using()
-	if select=='Chaves Utilizadas':
-		return company.ok()
-	if select=='Empresas':
-		return company.companies()
-	return company.companies()
+	month_min = request.form.get('select-month-min')
+	month_max = request.form.get('select-month-max')
+	year_min = request.form.get('select-year-min')
+	year_max = request.form.get('select-year-max')
+	model = request.form.get('select-model')
+	issue = request.form.get('select-issue')
+	serie_min = request.form.get('select-serie-min')
+	serie_max = request.form.get('select-serie-max')
+	state = request.form.get('select-uf')
+	
+	return key.addKeys(id, month_min, month_max, year_min, year_max, model, issue, serie_min, serie_max, state)

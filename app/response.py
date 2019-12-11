@@ -2,12 +2,11 @@ from flask import request
 import requests
 
 url = 'localhost'
-port = '8080'
+port = '8081'
 
-companies='/companies/'
-numberDocuments='/numberDocuments/'
-relationships='/relationships/'
-keys = '/keys/'
+companies='/companies'
+numberDocuments='/numberDocuments'
+keys = '/keys'
 
 def setUrl(url_):
 	global url
@@ -32,16 +31,25 @@ def setStatus(id, status):
 	sett = requests.get('http://'+url+':'+port+'/set/')
 	return sett.json()
 
-def getKeys():
-	get = requests.get('http://'+url+':'+port+keys)
+def getKeys(id_company):
+	get = requests.get('http://'+url+':'+port+companies+"/"+str(id_company)+keys)
 	return get.json()
 
 def getKeyId(id):
-	get = requests.get('http://'+url+':'+port+keys+srt(id))
+	get = requests.get('http://'+url+':'+port+keys+"/"+srt(id))
 	return get.json()
 
-def postKey(id):
-	post = requests.post('http://'+url+':'+port+keys, data={'id': str(id)})
+def postKey(id, state, year, month, model, serie, issue, numberDocumentId, id_company):
+	post = requests.post('http://'+url+':'+port+companies+'/'+str(id_company)+numberDocuments+'/'+str(numberDocumentId)+keys, 
+		data={
+			'id': str(id), 
+			'state': str(state), 
+			'year': str(year), 
+			'month': str(month), 
+			'model': str(model), 
+			'serie': str(serie), 
+			'issue': str(issue)
+		})
 	return post.json()
 
 def putKey(id, status):
@@ -54,22 +62,26 @@ def deleteKeys():
 
 def deleteKeyId(id):
 	delete = requests.delete('http://'+url+':'+port+keys, data={'id': str(id)})
-	returndelete.json()
+	return delete.json()
 
 def getCompanies():
 	get = requests.get('http://'+url+':'+port+companies)
 	return get
 
-def postCompany(id, name):
-	post = requests.post('http://'+url+':'+port+companies, data={'id': str(id), 'name': str(name)})
+def getCompanyId(id):
+	get = requests.get('http://'+url+':'+port+companies+"/"+str(id))
+	return get
+
+def postCompany(id, name, random):
+	post = requests.post('http://'+url+':'+port+companies, data={'id': str(id), 'name': str(name), 'random': str(random)})
 	return post
 
 def getNumberDocumentsCompanyId(id_company):
-	get = requests.get('http://'+url+':'+port+numberDocuments, data={'id_company': str(id_company)})
+	get = requests.get('http://'+url+':'+port+companies+"/"+str(id_company)+numberDocuments)
 	return get
 
 def postNumberDocument(id, id_company):
-	post = requests.post('http://'+url+':'+port+numberDocuments, data={'id': str(id), 'id_company': str(id_company)})
+	post = requests.post('http://'+url+':'+port+companies+"/"+str(id_company)+numberDocuments, data={'id': str(id)})
 	return post
 
 

@@ -3,13 +3,7 @@
   <body>
     {% include "nav-bar.html" %}
     <div class="container">
-      <form action="/company" method="get">
-        <button name="search" type="submit" class="btn btn-light" style="margin-top: 10px;">Voltar</button>
-      </form>
-      <form action="/company/{{ id_company }}/numberDocument/register" method="get">
-        <button name="search" type="submit" class="btn btn-light" style="margin-top: 10px; float: right;">Criar Número do Documento</button>
-      </form>
-      <h1> {{ title }} </h1>
+      {% include "company/company.html" %}
       <table class="table">
         <thead class="thead-light">
           <tr>
