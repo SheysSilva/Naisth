@@ -5,8 +5,9 @@ url = 'localhost'
 port = '8081'
 
 companies='/companies'
-numberDocuments='/numberDocuments'
 keys = '/keys'
+months = '/months'
+
 
 def setUrl(url_):
 	global url
@@ -31,6 +32,10 @@ def setStatus(id, status):
 	sett = requests.get('http://'+url+':'+port+'/set/')
 	return sett.json()
 
+def getkeysFree():
+	get = requests.get('http://'+url+':'+port+keys)
+	return get
+
 def getKeys(id_company):
 	get = requests.get('http://'+url+':'+port+companies+"/"+str(id_company)+keys)
 	return get.json()
@@ -40,7 +45,7 @@ def getKeyId(id):
 	return get.json()
 
 def postKey(id, state, year, month, model, serie, issue, numberDocumentId, id_company):
-	post = requests.post('http://'+url+':'+port+companies+'/'+str(id_company)+numberDocuments+'/'+str(numberDocumentId)+keys, 
+	post = requests.post('http://'+url+':'+port+companies+'/'+str(id_company)+keys, 
 		data={
 			'id': str(id), 
 			'state': str(state), 
@@ -76,12 +81,22 @@ def postCompany(id, name, random):
 	post = requests.post('http://'+url+':'+port+companies, data={'id': str(id), 'name': str(name), 'random': str(random)})
 	return post
 
-def getNumberDocumentsCompanyId(id_company):
-	get = requests.get('http://'+url+':'+port+companies+"/"+str(id_company)+numberDocuments)
+def getMonths():
+	get = requests.get('http://'+url+':'+port+months)
 	return get
 
-def postNumberDocument(id, id_company):
-	post = requests.post('http://'+url+':'+port+companies+"/"+str(id_company)+numberDocuments, data={'id': str(id)})
+def getMonthsId(id_month):
+	get = requests.get('http://'+url+':'+port+months+'/'+str(id_month))
+	return get
+
+def getMonthCompany(id_company):
+	get = requests.get('http://'+url+':'+port+companies+'/'+str(id_company)+months)
+	return get
+
+def getMonthId(id_company, id_month):
+	get = requests.get('http://'+url+':'+port+companies+'/'+str(id_company)+months+'/'+str(id_month))
+	return get
+
+def postMonth(id, year, serie, model, issue, state, inicial, id_company):
+	post = requests.post('http://'+url+':'+port+companies+'/'+str(id_company)+months, data={'id': str(id), 'year': str(year), 'serie': str(serie), 'model': str(model), 'issue': str(issue), 'state': str(state), 'inicial': int(inicial)})
 	return post
-
-

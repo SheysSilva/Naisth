@@ -17,7 +17,7 @@ options = [
 
 years = range(1989, int(now.year)+1)
 
-months = [
+months_model = [
 	{'name': 'Janeiro', 'value' : '01'},
 	{'name': 'Fevereiro', 'value' : '02'},
 	{'name': 'Março', 'value' : '03'},

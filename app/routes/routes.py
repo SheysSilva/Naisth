@@ -1,9 +1,9 @@
+import json
 from app import app
 from flask import render_template, redirect, url_for
 from pygments import highlight, lexers, formatters
-import json
 from app.response import *
-from app.routes import company, numberDocument, key
+from app.routes import company,  key
 from app.routes.util import *
 
 @app.route("/", methods=['GET'])
@@ -36,6 +36,17 @@ def addNumberDocument(id_company):
 
 @app.route("/company/<string:id>/key/register/", methods=['GET', 'POST'])
 def addKey(id):
+	month_min = None
+	month_max = None
+	year_min = None
+	year_max = None
+	model = None
+	issue = None
+	serie_min = None
+	serie_max = None
+	state = None
+	number_inicial = None
+
 	month_min = request.form.get('select-month-min')
 	month_max = request.form.get('select-month-max')
 	year_min = request.form.get('select-year-min')
@@ -45,5 +56,6 @@ def addKey(id):
 	serie_min = request.form.get('select-serie-min')
 	serie_max = request.form.get('select-serie-max')
 	state = request.form.get('select-uf')
+	number_inicial = request.form.get('number-inicial')
 	
-	return key.addKeys(id, month_min, month_max, year_min, year_max, model, issue, serie_min, serie_max, state)
+	return key.addKeys(id, month_min, month_max, year_min, year_max, model, issue, serie_min, serie_max, state, number_inicial)
